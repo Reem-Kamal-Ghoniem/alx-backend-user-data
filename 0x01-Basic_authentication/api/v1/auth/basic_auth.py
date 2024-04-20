@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
-""" 6. Basic auth
+""" Basic auth
 """
 
 from api.v1.auth.auth import Auth
 import base64
-from models.user import User
-from typing import TypeVar
 
 
 class BasicAuth(Auth):
     """ BasicAuth class.
     """
+
+    def extract_base64_authorization_header(self, ah: str) -> str:
+        """ def extract_base64_authorization_header.
+        """
+        if not ah or type(ah) != str or not ah.startswith("Basic "):
+            return
+        return "".join(ah.split(" ")[1:])
