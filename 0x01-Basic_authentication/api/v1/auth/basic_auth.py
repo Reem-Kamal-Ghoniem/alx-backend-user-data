@@ -3,7 +3,6 @@
 """
 
 from api.v1.auth.auth import Auth
-import base64
 
 
 class BasicAuth(Auth):
@@ -11,8 +10,8 @@ class BasicAuth(Auth):
     """
 
     def extract_base64_authorization_header(self, ah: str) -> str:
-        """ def extract_base64_authorization_header.
+        """ def extract_base64_header.
         """
-        if not ah or type(ah) != str or not ah.startswith("Basic "):
+        if not ah or type(ah) is not str or not ah.startswith("Basic "):
             return
         return "".join(ah.split(" ")[1:])
